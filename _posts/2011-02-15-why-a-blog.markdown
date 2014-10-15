@@ -1,0 +1,23 @@
+---
+author: Davy
+comments: true
+date: 2011-02-15 23:57:45+00:00
+layout: post
+slug: why-a-blog
+title: Why a blog ?
+wordpress_id: 5
+categories:
+- Miscellaneous
+tags:
+- blog
+---
+
+As every blogger, I think an explanation is required.
+
+Previously, I was sharing some piece of code through articles for "developpez.com".The experience is amazing. We quickly have feedbacks, articles are pushed everywhere.It's a fantastic platform, but you cannot put every kind of things on it. I mean, sometime you have an idea, a piece of code, a design to share but isn't enough developed to write a whole article about it. So, I will use my blog to address that. Another thing that make my creating my blog, is the easy/quick way to share knowledge. Waiting that the community validate your article is sometime time consuming and restricting. The downside is that some typos can be present in articles or in codes and sometime the concept will be good but not perfect, optimizable (I will try to make my best to avoid it).
+
+So, what you will find here. Some design patterns, explanations, architectures. I think the code will mostly be in Java and about a lot of fields: GUI, Android, Web, Computer Graphics...
+
+You will soon discover this.
+
+I wish you will find this blog helpful.

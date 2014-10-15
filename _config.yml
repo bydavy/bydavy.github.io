@@ -1,0 +1,62 @@
+# Dependencies
+markdown: redcarpet
+highlighter: rouge
+
+# Setup
+title: ByDavy
+description: "Code and decode small pieces of code"
+url: "https://www.bydavy.com"
+permalink: /:year/:month/:title/
+paginate: 5
+
+# Handling Reading
+exclude: ["Gemfile","Gemfile.lock","vendor","build.sh","README.md"]
+
+# Disqus
+disqus_forum_url: "bydavycom"
+posts:
+  comments: true
+
+# Settings
+google_measurement_id: "G-3YE74ZP8ML"
+simpleform-api-token: "f3f07e4a1166f9d485baea6b458eefbb"
+
+# Author
+author:
+  name: Davy
+  email: bydavy@gmail.com
+  email_md5: 8b12bb556c84e8deb4befd1fafb92d3c
+  linkedin: davyleggieri
+  twitter: davyleggieri
+  github: bydavy
+
+# Sitemap
+sitemap:
+    file: "/sitemap.xml"
+    exclude:
+        - "/atom.xml"
+        - "/feed.xml"
+        - "/feed/index.xml"
+    include_posts:
+        - "/index.html"
+    change_frequency_name: "change_frequency"
+    priority_name: "priority"
+
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+      author: "test"
+  -
+    scope:
+      path: "projects"
+      type: "pages"
+    values:
+      layout: "project"
+
+plugins:
+  - jekyll-paginate

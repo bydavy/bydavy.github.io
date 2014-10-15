@@ -1,0 +1,26 @@
+- title: Posts
+  url: /posts/
+
+- title: Projects
+  url: /projects/
+  sub:
+    - title: Card Receipts
+      url: /projects/card-receipts/
+    - title: Easy Network
+      url: /projects/easy-network/
+    - title: Sensorify
+      url: /projects/sensorify/
+    - title: Passive Pleasure
+      url: /projects/passive-pleasure/
+    - title: Potato Engine
+      url: /projects/potato-engine/
+    - title: Todo List Everywhere
+      url: /projects/todo-list-everywhere/
+    - title: Sketch crowd
+      url: /projects/sketch-crowd/
+
+- title: Contact
+  url: /contact/
+
+- title: About
+  url: /about/

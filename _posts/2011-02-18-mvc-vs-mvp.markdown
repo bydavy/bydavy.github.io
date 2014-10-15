@@ -1,0 +1,136 @@
+---
+author: Davy
+comments: true
+date: 2011-02-18 00:56:13+00:00
+layout: post
+slug: mvc-vs-mvp
+title: MVC vs MVP - Part 1
+wordpress_id: 13
+categories:
+- Design Patterns
+- Graphical User Interfaces
+tags:
+- controller
+- model
+- MVC
+- MVP
+- presenter
+- view
+---
+
+MVC or MVP everyone  have heard those acronym at least once. But what they exactly stand for ?
+
+MVC is Model View Controller and MVP is Model View Presenter. I can see some of you saying "what a scam" they changed one word and voilà. It's a little more complex than this. Let's start with some diagrams
+
+[![]({{ relative_url }}wp-content/uploads/2011/02/MVC.png)]({{ relative_url }}wp-content/uploads/2011/02/MVC.png) 
+[![]({{ relative_url }}wp-content/uploads/2011/02/MVP.png)]({{ relative_url }}wp-content/uploads/2011/02/MVP.png)
+
+As you can see, the communication between each entity isn't identical. I will try to explain this difference.
+
+## MVC
+
+### The view
+
+In the MVC design pattern, the view know the model and can display it.
+
+{% highlight java %}
+    public class MyView {
+        private Model model;
+
+        private void populateView(Model model)
+        {
+            final String name = model.getName();
+            this.label.setText(name);
+        }
+    }
+{% endhighlight %}
+
+
+The view listens the model an will be aware if it changes.
+
+{% highlight java %}
+    public class MyView implements ModelListener{
+        public void onModelChanged()
+        {
+            //Update the view with the new status of the model
+        }
+    }
+{% endhighlight %}
+
+### The controller
+
+
+The controller knows the view and listens event from it.
+{% highlight java %}
+    public class MyController implements ViewListener {
+        public void onButtonClicked()
+        {
+            final String name = view.getName();
+            view.displayPopup(name);
+        }
+    }
+{% endhighlight %}
+
+The controller can modify the model without updating the view, because the view is a model listener.
+{% highlight java %}
+    public class MyController implements ViewListener {
+        public void onButtonClicked()
+        {
+            final String name = view.getName();
+            model.setName(name);
+        }
+    }
+{% endhighlight %}
+
+## MVP
+### The view
+
+In the MVP design pattern, the view doesn't know the model and receives basic orders to populate the interface (setLabelText, setTodayDate, but never read value from the model)
+
+{% highlight java %}
+    public class MyView {
+        public void setNameValue(String name)
+        {
+            this.label.setText(name);
+        }
+    }
+{% endhighlight %}
+
+### The presenter
+The presenter knows the view, populates the view and binds itself to interface listeners
+{% highlight java %}
+    public class MyPresenter {
+        private View view;
+        private Model model;
+
+        public void bind()
+        {
+            this.view.addButtonActionListener(new ActionListener() {
+                @Override
+               public void actionPerformed(ActionEvent event) {
+                   this.view.setText("blabla");
+               }
+           });
+        }
+
+        public void populateView()
+        {
+            this.view.setName(model.getName());
+            this.view.setButtonEnabled(true);
+        }
+    }
+{% endhighlight %}
+
+The presenter is the only entity to know the model and to listen it.
+{% highlight java %}
+    public class MyPresenter implements ModelListener{
+        private Model model;
+
+        public void onModelChanged()
+        {
+            this.view.setName(model.getName());
+        }
+    }
+{% endhighlight %}
+
+To be continued...

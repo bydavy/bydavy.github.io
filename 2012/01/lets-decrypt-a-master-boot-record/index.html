@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      An example of Master Boot Record &middot; ByDavy
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+  	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', UA-13053027-2, http://www.bydavy.com);
+  ga('send', 'pageview');
+
+</script>
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          ByDavy
+        </a>
+      </h1>
+      <p class="lead">Code and decode small pieces of code</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+        
+          
+          <a class="sidebar-nav-item" href="/posts/index.html">Posts</a>
+
+          
+
+        
+      
+        
+          
+          <a class="sidebar-nav-item" href="/projects/index.html">Projects</a>
+
+          
+            
+                
+                <a class="sidebar-nav-item" href="/projects/card-receipts/index.html">&nbsp;- Card Receipts</a>
+            
+          
+            
+                
+                <a class="sidebar-nav-item" href="/projects/easy-network/index.html">&nbsp;- Easy Network</a>
+            
+          
+            
+                
+                <a class="sidebar-nav-item" href="/projects/sensorify/index.html">&nbsp;- Sensorify</a>
+            
+          
+            
+                
+                <a class="sidebar-nav-item" href="/projects/passive-pleasure/index.html">&nbsp;- Passive Please</a>
+            
+          
+            
+                
+                <a class="sidebar-nav-item" href="/projects/potato-engine/index.html">&nbsp;- Potato Engine</a>
+            
+          
+            
+                
+                <a class="sidebar-nav-item" href="/projects/todo-list-everywhere/index.html">&nbsp;- Todo List Everywhere</a>
+            
+          
+            
+                
+                <a class="sidebar-nav-item" href="/projects/sketch-crowd/index.html">&nbsp;- Sketch crowd</a>
+            
+          
+
+        
+      
+        
+          
+          <a class="sidebar-nav-item" href="/contact/index.html">Contact</a>
+
+          
+
+        
+      
+        
+          
+          <a class="sidebar-nav-item" href="/about/index.html">About</a>
+
+          
+
+        
+      
+    </nav>
+
+    <p>&copy; 2014. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">An example of Master Boot Record</h1>
+  Davy
+  <span class="post-date">21 Jan 2012</span>
+  <p>Sometimes when your computer refuses to boot, or your partition table is corrupt you have a &quot;beautiful message&quot; on screen saying your hard drive has an issue, a MBR error. Let&#39;s dive inside and decrypt an existing MBR in order to understand what can be found inside it.</p>
+
+<h1>Wikipedia, what&#39;s a MBR ?</h1>
+
+<p>The master boot record is a type of boot sector very popular (for instance Windows and Grub use it). It contains <strong>512 bytes</strong> stored at the first sector of your data storage device (HDD, USB stick).Inside this boot sector can be found:</p>
+
+<ul>
+<li><strong>the bootstrapping of your operation</strong> system (described as &quot;code area&quot; in the table), </li>
+<li>an optional unique if for your data storage device (described as &quot;disk signature&quot; in the table)</li>
+<li><strong>the partition table</strong> (described as &quot;Table of primary partitions&quot; in the table).</li>
+</ul>
+
+<p><a href="//wp-content/uploads/2012/01/mbr.png"><img src="/wp-content/uploads/2012/01/mbr.png" alt="Structure of the Master Boot Record"></a></p>
+
+<p>source : <a href="http://fr.wikipedia.org/wiki/Master_boot_record">wikipedia</a></p>
+
+<h1><strong>How to extract a Master Boot Record</strong></h1>
+
+<p>We can simply use the command dd to copy the raw first 512 bytes of a media</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$dd</span> <span class="k">if</span><span class="o">=</span>/dev/YOUR_DATA_STORAGE_DEVICE <span class="nv">of</span><span class="o">=</span>DESTINATION_FILE <span class="nv">bs</span><span class="o">=</span><span class="m">512</span> <span class="nv">count</span><span class="o">=</span>1</code></pre></div>
+
+<h1><strong>An example of Master Boot Record</strong></h1>
+
+<p>To provide a readable/hexa version of the MBR, I used an hexadecimal editor but you could use the command hexadump (to display hexa directly from your raw data storage device). And to understand what is displayed I added some sprinkles thanks photoshop =0)</p>
+
+<p><a href="//wp-content/uploads/2012/01/mbr_color.png"><img src="/wp-content/uploads/2012/01/mbr_color.png" alt=""></a></p>
+
+<p><strong>Code area</strong></p>
+
+<p>In this example MBR, the code area contains shellcode and not only zeros padding. So, we can guess that this data storage device contains a bootstrap for an operating system. The goal of this tutorial isn&#39;t to understand how a OS bootstrap works, so nothing more to add... Maybe, we can cheat and discover the string GRUB in the plain text - not a reason to be sure it&#39;s GRUB but still a tips that confirms our supposition -</p>
+
+<p><strong>Disk signature</strong></p>
+
+<p>Yeah, an id...</p>
+
+<p><strong>Null</strong></p>
+
+<p>Too much said in the name</p>
+
+<p><strong>Table of primary partitions</strong></p>
+
+<p>Here we have four 16 bytes entries describing each primary partition. Now, you know why only 4 primary partitions can be defined for a data storage device. If we create bunch of 16 bytes, we have :</p>
+
+<ul>
+<li>Partition 1 : 80 01 01 00 83 FE 3F 01 3F 00 00 00 43 7D 00 00<br></li>
+<li>Partition 2 : 00 00 01 02 83 FE 3F 0D 82 7D 00 00 0C F1 02 00</li>
+<li>Partition 3 : 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00</li>
+<li>Partition 4 : 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00</li>
+</ul>
+
+<p>Even without knowing the meaning of those bytes we can say that there is only two partitions in the partition table described by this MBR because we have zero padding for the two last 16 bytes entries</p>
+
+<h3>MBR signature</h3>
+
+<p>It always end by 55 AA. It&#39;s a signature, so by extracting the 512 first bytes of a data storage device you could said if it&#39;s a MBR or something else by reading those two last bytes.</p>
+
+<h2>Let&#39;s decrypt a primary partition entry</h2>
+
+<p>Partition 1 : 80 01 01 00 83 FE 3F 01 3F 00 00 00 43 7D 00 00</p>
+
+<ul>
+<li>80 : it&#39;s the status (80 for a bootable partition, 00 for a non bootable)</li>
+<li>01 01 00 : Cylinder-head-sector address of the first absolute sector in partition (first byte is the head, 01, the second is &quot;almost the sector&quot; and the last one is the cylinder, 00)</li>
+<li>83 : partition type in our case 83 means a native Linux file system (Ext2, Ext3 or others) - <a href="http://en.wikipedia.org/wiki/Partition_type">here to find each type</a></li>
+<li>FE 3F 01 : Cylinder-head-sector address of the last absolute sector in partition (same format)</li>
+<li>3F 00 00 00 : Logical block addressing of first absolute sector in the partition</li>
+<li>43 7D 00 00 : Number of sectors in partition (32067 sectors)</li>
+</ul>
+
+<h2>Guess what ?</h2>
+
+<p>We have enough information to guess about this data storage device. It contains a bootstrap (GRUB) and two partitions. The first partition is a Linux file system of 32067 sectors (- on a hard drive each sector is 512 bytes -, so 32067<em>512/1024=16mb) and it&#39;s a bootable partition (where the bootstrap, GRUB, will have to read). The second partition is a non bootable partition which contains a Linux file system of 192 780 sectors (192780</em>512/1024=96mb).</p>
+
+<h2>The right answer is ...</h2>
+
+<p>I don&#39;t what to hurt you but there is a beautiful command &quot;file&quot;, and guess what...</p>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$file</span> YOUR_EXTRACTED_MBRE
+x86 boot sector<span class="p">;</span>
+GRand Unified Bootloader, stage1 version 0x3, stage2 address 0x2000, stage2 segment 0x200<span class="p">;</span>
+partition 1: <span class="nv">ID</span><span class="o">=</span>0x83, active, starthead 1, startsector 63, <span class="m">32067</span> sectors<span class="p">;</span>
+partition 2: <span class="nv">ID</span><span class="o">=</span>0x83, starthead 0, startsector 32130, <span class="m">192780</span> sectors, code offset 0x48</code></pre></div>
+
+<p>Yes, you don&#39;t need to decrypt all by yourself like we did to extract information from the MBR, this command print out everything for you... At least, we guess right about the content of this data storage device =0)</p>
+
+
+  
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'bydavycom';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2014/03/numbers-morphing-implemented-with-android-ui-toolkit/">
+            Number's morphing implemented with Android UI toolkit
+            <small>24 Mar 2014</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2014/03/parallax-implemented-with-android-ui-toolkit/">
+            Parallax implemented with Android UI toolkit
+            <small>09 Mar 2014</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2013/10/listeners-common-mistakes/">
+            Listeners: Common mistakes
+            <small>07 Oct 2013</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,82 @@
+==================================================================
+https://keybase.io/leggieri
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://www.bydavy.com
+  * I am leggieri (https://keybase.io/leggieri) on keybase.
+  * I have a public key with fingerprint 81E8 9FFE E4F2 BE94 D0B4  FBAA 816D F4A1 0DF3 E3AC
+
+To claim this, I am signing this object:
+
+{
+    "body": {
+        "client": {
+            "name": "keybase.io node.js client",
+            "version": "0.4.8"
+        },
+        "key": {
+            "fingerprint": "81e89ffee4f2be94d0b4fbaa816df4a10df3e3ac",
+            "host": "keybase.io",
+            "key_id": "816DF4A10DF3E3AC",
+            "uid": "6831f3f1379c3c1174cdbeae3abd6c00",
+            "username": "leggieri"
+        },
+        "merkle_root": {
+            "ctime": 1403201667,
+            "hash": "ad9adc1dea00a48f90716393f0552d09685b5b8ea910334943dde14022b6ff80cc14d597b1e4a08fab2ebd5e7f79c6dc1a65982e3f76f75f2d54c48ef37ba2b3",
+            "seqno": 21052
+        },
+        "service": {
+            "hostname": "www.bydavy.com",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1403201952,
+    "expire_in": 157680000,
+    "prev": "1945ccf1c658066f39e28deb98d34f6a567fd366df5e3b41ff8ee637a1a4a3db",
+    "seqno": 5,
+    "tag": "signature"
+}
+
+with the aforementioned key, yielding the PGP signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG v1
+
+owFVkn1QVFUYxncl+TIUjEwnIbw5mqNt99zvi6PyXYIxFAk24Szn3HvOcttl77K7
+QJvSyPgx8gdOWUNOhlE6o5HIZGEkMSoOZVoUoIiiRjiFISCJClpi9zI05f3r3Hmf
+93ee533P2xFBllBreeGtjyNGrx60nvkDWbL3LqnZQCFdDVDxGyjFpWG33zy5YSGm
+4iknDiDowzZNj3PrKra97oub0iyjSrDXp+luQ0XbOJtElS0z5WYz0dwO7PV4NZNF
+SQBLMiEYc4RBWOZUGnEEQSgBQSUcBLRKWMxCxUAW6D7/Q7dSk0y7pk5yhJQ0LhHQ
+KWlsKpuYbNSKJwuCxALCEsCKssIqAIicoiIMDSZSBYWmTaEPe6ciubDDoWGvZvot
+xF6nC9u9uj4ZWvFrpgRwNMvQQBBEwxH0FRhNUJWhqgAVQ5qGnERkWgQCK7OE5nlG
+pWVB4hGPJAxlQLMsJ3OsqmKDwzBIIESiFQVwKi+LCGAO0hKBiMFI5bFIDM+CQYYC
+L0sMZokoEJEnjMpzCidhwooIMog1IvhwkVun4hlA80yZ+est0RRs2janNhWutLTU
+hgIqLAnYFL3Q6PJ4db+u6C6jVuD3e+LN1P6AZ1KL0SH7FMaONLdqbO3/awWG9OGJ
+yDyzjMJveDQvtmumghcFiTY+8x5cYjCBzPGKQoAi8BItCISVMSOpGMmSynJEgLwg
+EpUVjMXzmEUcMGaDscCKEEAOsir6Lydv+IQOA+nTHG7oL/Ziqqxi2vxHLNZQS/D0
+aea7tYSHRf77mFckRVpa565kIjPevbI2tPzRst/vB0efTLtYeSMviq9cWH5M2Rp9
+oNTzmTOp7vP0vvld+54vPmZ9MHTvw1XNeMHYcEfGD+cGDo451yXPJMNPNx8+rQ3c
+7Gv1dTry5gwOn/2Wakxpqn4B3l4ubd6/qYO9Vd/S0vRl9r3B6qp2281Lx8rOnd8J
+ns19YknWjOkJ9Z/8OifjI3tObX930O7a+FPZsX0nxBuDQk9tm7rGFpIdk3Tpm+Xz
+NyUzjVveGlx5ObsYz9ofcnHn36G5tYlKVrk276x9T3eqxeaq8FZ9egYviBl/qbrz
+Tqol5mju8Ygde8Z7qtobM8bCH/To2853KBlpF545fK3m8ZytiRHvbe57spPqiZ7Z
+Lzalzyr+nqolZddfeTF2aN32xXePrz+0zzkY/cXIgUxXUcjSmlMDCYm/4XJf1dDc
+C57bE02Ltv2Y0McV2Y9XpAQ1XL7Tv3riu9aX25WJ0dlHWvNeA6gwPdMd+IreSjdY
+O95svr5x97w42fZceMOoc2l+28G7V0uCwzavb7ovJ52OWmX13K7f1eu4u/0dCd6I
+quypj6l7zJaTX/11c3PUlb/aLIG1M8rjqo980Ltr9qvOFkQvpoN/PhF7Mu8aGO4Z
+r215KmFhSveIC3X/ErokDmQePbpl9dj7bTHQusa5WFsxOyzrp5berircVVeUEZW8
+d3v+otiNFX+Oj6T+Aw==
+=KDLv
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/leggieri
+
+==================================================================

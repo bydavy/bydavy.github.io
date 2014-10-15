@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Compiling Linux Kernel modules for Synology devices &middot; ByDavy
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+  	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', UA-13053027-2, http://www.bydavy.com);
+  ga('send', 'pageview');
+
+</script>
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          ByDavy
+        </a>
+      </h1>
+      <p class="lead">Code and decode small pieces of code</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+        
+          
+          <a class="sidebar-nav-item" href="/posts/index.html">Posts</a>
+
+          
+
+        
+      
+        
+          
+          <a class="sidebar-nav-item" href="/projects/index.html">Projects</a>
+
+          
+            
+                
+                <a class="sidebar-nav-item" href="/projects/card-receipts/index.html">&nbsp;- Card Receipts</a>
+            
+          
+            
+                
+                <a class="sidebar-nav-item" href="/projects/easy-network/index.html">&nbsp;- Easy Network</a>
+            
+          
+            
+                
+                <a class="sidebar-nav-item" href="/projects/sensorify/index.html">&nbsp;- Sensorify</a>
+            
+          
+            
+                
+                <a class="sidebar-nav-item" href="/projects/passive-pleasure/index.html">&nbsp;- Passive Please</a>
+            
+          
+            
+                
+                <a class="sidebar-nav-item" href="/projects/potato-engine/index.html">&nbsp;- Potato Engine</a>
+            
+          
+            
+                
+                <a class="sidebar-nav-item" href="/projects/todo-list-everywhere/index.html">&nbsp;- Todo List Everywhere</a>
+            
+          
+            
+                
+                <a class="sidebar-nav-item" href="/projects/sketch-crowd/index.html">&nbsp;- Sketch crowd</a>
+            
+          
+
+        
+      
+        
+          
+          <a class="sidebar-nav-item" href="/contact/index.html">Contact</a>
+
+          
+
+        
+      
+        
+          
+          <a class="sidebar-nav-item" href="/about/index.html">About</a>
+
+          
+
+        
+      
+    </nav>
+
+    <p>&copy; 2014. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Compiling Linux Kernel modules for Synology devices</h1>
+  Davy
+  <span class="post-date">16 Jan 2012</span>
+  <p>Synology NAS are very versatile. They are running a stripped version of Linux with less kernel modules, but we can overcome this by compiling and adding modules (for instance the usbserial module used by usb serial converters).</p>
+
+<p><strong>Requirements:</strong></p>
+
+<ul>
+<li>a computer (or a virtual machine) running Linux (Debian, Fedora, Ubuntu, etc)</li>
+<li>the <a href="http://sourceforge.net/projects/dsgpl/files/">tool chains</a> specific to your Synology</li>
+<li>the <a href="http://sourceforge.net/projects/dsgpl/files/">Synology NAS GPL</a> source specific to your Synology</li>
+</ul>
+
+<p><strong>How to proceed:</strong></p>
+
+<ul>
+<li>Unzip the tool chains in /usr/local</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">computer<span class="nv">$ </span>tar -xzf yourToolChains -C /usr/local/</code></pre></div>
+
+<ul>
+<li>Unzip the Synology NAS GPL source inside your tool chains</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">computer<span class="nv">$ </span>tar -xzf yourNASGPLSource -C /usr/local/yourToolChains/</code></pre></div>
+
+<ul>
+<li>Before continuing, let&#39;s find out which Linux kernel we are running on the Synology in order to compile for the right version:</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">computer<span class="nv">$ </span>ssh -l root ipOfYourSynology
+synology<span class="nv">$ </span>uname -a
+Linux Syno youLinuxKernelVersion xxxxx yourSynologyArchi</code></pre></div>
+
+<ul>
+<li>Open the Synology NAS GPL source folder corresponding to your Synology Linux kernel</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">computer<span class="nv">$ </span><span class="nb">cd</span> /usr/local/yourToolChains/source/linux-youLinuxKernelVersion</code></pre></div>
+
+<ul>
+<li>Copy the config file created by Synology to configure the kernel</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">computer<span class="nv">$ </span>cp synoconfigs/yourSynologyArchi .config</code></pre></div>
+
+<ul>
+<li>Edit the Makefile to compile for the right architecture and use the right tool chains</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">computer<span class="nv">$ </span>vi Makefile
+edit the variable ARCH -&gt; <span class="nv">ARCH</span> <span class="o">=</span> yourSynologyAchi
+edit the variable CROSS_COMPILE -&gt; <span class="nv">CROSS_COMPILE</span> <span class="o">=</span> /usr/local/yourToolChains/bin/yourToolChains-</code></pre></div>
+
+<ul>
+<li>Check the config file we just copied</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">computer<span class="nv">$ </span>make oldconfig</code></pre></div>
+
+<ul>
+<li>Edit the config file through the user interface to add modules</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">computer<span class="nv">$ </span>make menuconfig</code></pre></div>
+
+<ul>
+<li>Compile all modules</li>
+</ul>
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">computer<span class="nv">$ </span>make modules 
+<span class="c"># or only a specific module: make M=./drivers/usb/serial</span></code></pre></div>
+
+<ul>
+<li>Find your modules in the corresponding subfolder (in my case drivers/usb/serial/usbserial.ko)</li>
+</ul>
+
+
+  
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'bydavycom';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/2014/03/numbers-morphing-implemented-with-android-ui-toolkit/">
+            Number's morphing implemented with Android UI toolkit
+            <small>24 Mar 2014</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2014/03/parallax-implemented-with-android-ui-toolkit/">
+            Parallax implemented with Android UI toolkit
+            <small>09 Mar 2014</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/2013/10/listeners-common-mistakes/">
+            Listeners: Common mistakes
+            <small>07 Oct 2013</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

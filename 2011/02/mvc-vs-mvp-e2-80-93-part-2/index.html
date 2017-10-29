@@ -11,7 +11,7 @@
 
   <title>
     
-      A great book about search engine interfaces &middot; ByDavy
+      MVC vs MVP – Part 2 &middot; ByDavy
     
   </title>
 
@@ -129,26 +129,39 @@
 
     <div class="content container">
       <div class="post">
-  <h1 class="post-title">A great book about search engine interfaces</h1>
+  <h1 class="post-title">MVC vs MVP – Part 2</h1>
   Davy
-  <span class="post-date">16 Feb 2011</span>
-  <p>I read a great online book about search engine interface: &quot;Search engine user interfaces&quot; by Marti A.</p>
+  <span class="post-date">20 Feb 2011</span>
+  <h1>What is the major difference ?</h1>
 
-<p>What I like is that the book is FREE, isn&#39;t technic but gives you a new approach to interfaces (by interfaces, I mean every kind of interface: softwares, websites). You will discover some guidelines like &quot;offer efficient and informative feedback&quot;. Sometime, they seem very simple but they are very effective. The chapter dedicated to guidelines is the chapter 1, here is a quick overview :</p>
+<p>In MVC, the biggest portion of code is shared between the Controller and the View. The controller contains the logic, and the View know how to render the model and listen model changes.</p>
 
-<ul>
-<li>Keeping the interface simple</li>
-<li>...</li>
-<li>Offer efficient and informative feedback</li>
-<li>Balance user control with automated actions</li>
-<li>Reduce short-term memory usage</li>
-<li>Provide shortcuts</li>
-<li>Reduce errors</li>
-<li>Recognize the importance of small details</li>
-<li>Recognize the importance of aesthetic in design</li>
-</ul>
+<p>In MVP, the biggest portion of code is solely in the Presenter and the View is entirely passive. The presenter contains the whole logic, and the View doesn&#39;t know what it&#39;s displaying.</p>
 
-<p>To read the chapter 1 click <a href="http://searchuserinterfaces.com/book/sui_ch1_design.html">here</a>.</p>
+<h1>What is the benefit of each approach ?</h1>
+
+<p>In MVC:
+  * All information displayed is manager by the view itself (When you need to translate your software, only view classes will be edited.)
+  * The controller don&#39;t always need to push the new edited value of the model (push to view class).
+  * FYI: The model must be designed and finalized before the view</p>
+
+<p>In MVP:
+  * The view is solely passive, you can easily replace the view by a stumb one in order to run unit tests. Such tests (with a stumb view) will have a better coverage than MVC approach
+  * As the view is passive and doesn&#39;t contains any kind of logic, the view can be more easily tweaked without impacting the logic.
+  * FYI: The model can be designed and finalized after the view</p>
+
+<h1>When to use MVC or MVP ?</h1>
+
+<p>This is a project specific question: sometime the framework used is designed for on approach, sometime you will use the other approach because you cannot rely on the View for your tests, etc...</p>
+
+<p>Between MVC and MVP, the best approach is the approach that match your needs.</p>
+
+<h1>An example of programme designed with both approach:</h1>
+
+<p><a href="/wp-content/uploads/2011/02/bydavy_mvp.zip">mvp example</a><br>
+<a href="/wp-content/uploads/2011/02/bydavy_mvc.zip">mvc example</a></p>
+
+<p>For MVC or MVP, the order of instantiation of the view, controller/presenter isn&#39;t important. Try to focus on the communication between the 3 entities (model, view, controller/presenter).</p>
 
 
   

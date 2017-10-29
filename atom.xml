@@ -4,7 +4,7 @@
  <title>ByDavy</title>
  <link href="http://www.bydavy.com/atom.xml" rel="self"/>
  <link href="http://www.bydavy.com/"/>
- <updated>2014-10-15T21:03:10-07:00</updated>
+ <updated>2017-10-29T16:47:58-05:00</updated>
  <id>http://www.bydavy.com</id>
  <author>
    <name>Davy</name>
@@ -15,7 +15,7 @@
  <entry>
    <title>Number's morphing implemented with Android UI toolkit</title>
    <link href="http://www.bydavy.com/2014/03/numbers-morphing-implemented-with-android-ui-toolkit/"/>
-   <updated>2014-03-24T22:36:58-07:00</updated>
+   <updated>2014-03-25T00:36:58-05:00</updated>
    <id>http://www.bydavy.com/2014/03/numbers-morphing-implemented-with-android-ui-toolkit</id>
    <content type="html">&lt;p&gt;This one is an awesome looking morphing of numbers. It&amp;#39;s heavily based on path and bezier curves.&lt;/p&gt;
 
@@ -28,7 +28,7 @@
  <entry>
    <title>Parallax implemented with Android UI toolkit</title>
    <link href="http://www.bydavy.com/2014/03/parallax-implemented-with-android-ui-toolkit/"/>
-   <updated>2014-03-09T21:04:34-07:00</updated>
+   <updated>2014-03-09T23:04:34-05:00</updated>
    <id>http://www.bydavy.com/2014/03/parallax-implemented-with-android-ui-toolkit</id>
    <content type="html">&lt;p&gt;I just published an implementation of the parallax effect. Surprisingly it&amp;#39;s something no so complicated to implement with Android UI toolkit.
 Where it gets a like more tricky is optimizing the drawing operation by hiding views that overlap each other.&lt;/p&gt;
@@ -42,7 +42,7 @@ Where it gets a like more tricky is optimizing the drawing operation by hiding v
  <entry>
    <title>Listeners: Common mistakes</title>
    <link href="http://www.bydavy.com/2013/10/listeners-common-mistakes/"/>
-   <updated>2013-10-07T23:08:15-07:00</updated>
+   <updated>2013-10-08T01:08:15-05:00</updated>
    <id>http://www.bydavy.com/2013/10/listeners-common-mistakes</id>
    <content type="html">&lt;p&gt;Listeners are very common in Java and surprisingly they are rarely implemented correctly. The issue comes most of the time from the event firing, also known as notifying listeners. Let&amp;#39;s go over a few implementation I&amp;#39;ve encounter and let&amp;#39;s explain the shortcomings.&lt;/p&gt;
 
@@ -50,7 +50,7 @@ Where it gets a like more tricky is optimizing the drawing operation by hiding v
 
 &lt;p&gt;Let&amp;#39;s assume that we have a class Listenable which is our object observed and an interface Listener which are our observers.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Listenable&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Listenable&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;Collection&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mListeners&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
     
     &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;registerListener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Listener&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
@@ -68,19 +68,19 @@ Where it gets a like more tricky is optimizing the drawing operation by hiding v
 
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Listener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onChanged&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h1&gt;Bad implementation #1: iterating over listeners&lt;/h1&gt;
 
 &lt;p&gt;This is the naive implementation. As mlisteners is a collection, an approach is to just go iterate on it with an advanced for loop and invoke the &amp;quot;onChanged&amp;quot; method to notify of a change.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Listener&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;l:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mListeners&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Listener&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;l:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mListeners&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onChanged&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;It looks pretty simple and legit. Well not really... &amp;quot;onChanged&amp;quot; is implemented by another object and we don&amp;#39;t know what could be its implementation.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// Example of implementation where it gets bad&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// Example of implementation where it gets bad&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyListener&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Listener&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
 
     &lt;span class=&quot;n&quot;&gt;Listenable&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mListenable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
@@ -89,7 +89,7 @@ Where it gets a like more tricky is optimizing the drawing operation by hiding v
         &lt;span class=&quot;c1&quot;&gt;// Do the logic&lt;/span&gt;
         &lt;span class=&quot;n&quot;&gt;mListenable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;removeListener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Advanced for loop in Java are based of iterators and unfortunately iterators have a few limitations. They don&amp;#39;t support Collection edition after the iterator creation and during its usage. To be more precise, the Collection can be edited through the iterator&amp;#39;s remove method but that&amp;#39;s pretty much it. In our example, while scanning the Collection in the Observer, a Listener could invoke the &amp;quot;removeListener()&amp;quot; method. The consequence is a ConcurrentModificationException thrown in the Observer code -when it will try to iterating over the next Listener-.&lt;/p&gt;
 
@@ -97,11 +97,11 @@ Where it gets a like more tricky is optimizing the drawing operation by hiding v
 
 &lt;p&gt;In this code, the Collection is iterated in a reverse way. I guess the intent is to overcome the potential ConcurrentModificationException by getting rid of Iterators and iterating manually over the Collection and alowing Listener removal by doing a reverse scan. Unfortunately this piece of code fails at both.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mListeners&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mListeners&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;--)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;Listener&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mListeners&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onChanged&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;As we don&amp;#39;t know what could be implemented under the onChanged method of a Listener, we have to be ready to all eventualities. In case a Listener unregister more than one Listener our code could change the size of the list while we are iterating over it and potential throw w NullPointerException. Or it can add Listeners and depending if they are added at the beginning or end of the Collection they could receive or not the change currently notified.&lt;/p&gt;
 
@@ -109,22 +109,22 @@ Where it gets a like more tricky is optimizing the drawing operation by hiding v
 
 &lt;p&gt;Listeners and synchronization together are most of the time a latent bomb.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mListeners&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Listener&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;l:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mListeners&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Don&amp;#39;t focus on the way we iterate here&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mListeners&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Listener&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;l:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mListeners&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Don't focus on the way we iterate here&lt;/span&gt;
         &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onChanged&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Synchronizing a monitor during the invokation of a listener is a very bold idea. Again, we have no idea of what the Listener code could be and the other side, the Listener doesn&amp;#39;t know if and why we have decided to synchronize on a monitor during it&amp;#39;s onChanged invokation. In those circumstances, we can easily imagine potential deadlocks.&lt;/p&gt;
 
 &lt;h1&gt;A better way to do it&lt;/h1&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// Take a snapshot of listeners registered when the change occured&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// Take a snapshot of listeners registered when the change occured&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Listener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;listenersToinvoke&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ArrayList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Listener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mListeners&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;// Iterator over the snapshot without holding any monitors&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Listener&lt;/span&gt; &lt;span class=&quot;nl&quot;&gt;l:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;listenersToinvoke&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onChanged&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Now, it probably makes sense why this is a better approach. By copying the Collection, we ensure two things:&lt;/p&gt;
 
@@ -140,7 +140,7 @@ Where it gets a like more tricky is optimizing the drawing operation by hiding v
  <entry>
    <title>Searching in AOSP source code</title>
    <link href="http://www.bydavy.com/2013/06/searching-in-aosp-source-code/"/>
-   <updated>2013-06-17T23:01:23-07:00</updated>
+   <updated>2013-06-18T01:01:23-05:00</updated>
    <id>http://www.bydavy.com/2013/06/searching-in-aosp-source-code</id>
    <content type="html">&lt;p&gt;Sometimes, you need to dig in Android frameworks to figure how to use or optimize some portion of your code. As a good developer you probably have the master branch of AOSP pulled locally on your machine, but if that&amp;#39;s not the case I suggest you to checkout &lt;a href=&quot;http://androidxref.com/&quot;&gt;AndroidXRef&lt;/a&gt;. They provide search across AOSP source code and cross-reference (almost like browsing the code from your favorite IDE).&lt;a href=&quot;http://androidxref.com/&quot;&gt;
 &lt;/a&gt;&lt;/p&gt;
@@ -150,7 +150,7 @@ Where it gets a like more tricky is optimizing the drawing operation by hiding v
  <entry>
    <title>An amazing free Android training material</title>
    <link href="http://www.bydavy.com/2013/06/an-amazing-free-android-training-material/"/>
-   <updated>2013-06-16T21:19:33-07:00</updated>
+   <updated>2013-06-16T23:19:33-05:00</updated>
    <id>http://www.bydavy.com/2013/06/an-amazing-free-android-training-material</id>
    <content type="html">&lt;p&gt;A very small company, Free Electrons, based in France is doing an amazing job at supporting companies and organizations using embedded Linux in their embedded projects.
 Their are so committed to free software they even release their training materials. They have a brilliant Android training, which cover every layer of Android (kernel, compilation, libs, IPC, etc).&lt;/p&gt;
@@ -163,7 +163,7 @@ Their are so committed to free software they even release their training materia
  <entry>
    <title>Technology in the automotive industry</title>
    <link href="http://www.bydavy.com/2012/06/technology-in-automotive-industry/"/>
-   <updated>2012-06-27T13:23:48-07:00</updated>
+   <updated>2012-06-27T15:23:48-05:00</updated>
    <id>http://www.bydavy.com/2012/06/technology-in-automotive-industry</id>
    <content type="html">&lt;p&gt;Take any futuristic movies, pause on a scene where you can see a car and then think about it our cars today...
 Technologies in cars will become central and there is no doubt about it. But why car&amp;#39;s industry is left behind and don’t keep up integrating new technologies ? Sure we added features to improve the driving comfort but if you look at GPS, phones, etc are integrated in cars since a long time and things are not really evolving... Their is definitely a market for that and we have already technologies and knowledge to do so. Here is the result of a quick brain storming:&lt;/p&gt;
@@ -202,25 +202,27 @@ To be able to create apps, a SDK/API will be available. This SDK/API will offer 
  <entry>
    <title>Script to build Android</title>
    <link href="http://www.bydavy.com/2012/06/script-to-build-android/"/>
-   <updated>2012-06-14T17:23:35-07:00</updated>
+   <updated>2012-06-14T19:23:35-05:00</updated>
    <id>http://www.bydavy.com/2012/06/script-to-build-android</id>
    <content type="html">&lt;p&gt;After compiling Android all day long you quickly learn a few tricks like &amp;quot;mmm&amp;quot; to do a partial build or &amp;quot;adb sync&amp;quot; to synchronize the device files tree to your compilation output directory. Those tools save you a lot of time, but you are still typing the same list of commands all day long. And here comes my script.&lt;/p&gt;
 
 &lt;p&gt;Do you need to compile your Android source ?&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;dt build&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;dt build&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Do you need to flash your device with the latest image produced by your compilation ?&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;dt flash&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt; 
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;dt flash&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Do you need to do a fast partial build and push changed files to your device ?&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;dt pbuild -p&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt; 
+&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;dt pbuild &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Do you need to reinstall a bunch of files and apk to your device ?&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;dt reinstall&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;dt reinstall&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Here are a few examples of what you can do:&lt;/p&gt;
 
@@ -233,7 +235,7 @@ To be able to create apps, a SDK/API will be available. This SDK/API will offer 
  <entry>
    <title>An example of Master Boot Record</title>
    <link href="http://www.bydavy.com/2012/01/lets-decrypt-a-master-boot-record/"/>
-   <updated>2012-01-21T17:04:27-08:00</updated>
+   <updated>2012-01-21T19:04:27-06:00</updated>
    <id>http://www.bydavy.com/2012/01/lets-decrypt-a-master-boot-record</id>
    <content type="html">&lt;p&gt;Sometimes when your computer refuses to boot, or your partition table is corrupt you have a &amp;quot;beautiful message&amp;quot; on screen saying your hard drive has an issue, a MBR error. Let&amp;#39;s dive inside and decrypt an existing MBR in order to understand what can be found inside it.&lt;/p&gt;
 
@@ -255,7 +257,7 @@ To be able to create apps, a SDK/API will be available. This SDK/API will offer 
 
 &lt;p&gt;We can simply use the command dd to copy the raw first 512 bytes of a media&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$dd&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/dev/YOUR_DATA_STORAGE_DEVICE &lt;span class=&quot;nv&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;DESTINATION_FILE &lt;span class=&quot;nv&quot;&gt;bs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;512&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$dd&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/dev/YOUR_DATA_STORAGE_DEVICE &lt;span class=&quot;nv&quot;&gt;of&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;DESTINATION_FILE &lt;span class=&quot;nv&quot;&gt;bs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;512 &lt;span class=&quot;nv&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h1&gt;&lt;strong&gt;An example of Master Boot Record&lt;/strong&gt;&lt;/h1&gt;
 
@@ -313,11 +315,11 @@ To be able to create apps, a SDK/API will be available. This SDK/API will offer 
 
 &lt;p&gt;I don&amp;#39;t what to hurt you but there is a beautiful command &amp;quot;file&amp;quot;, and guess what...&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$file&lt;/span&gt; YOUR_EXTRACTED_MBRE
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$file&lt;/span&gt; YOUR_EXTRACTED_MBRE
 x86 boot sector&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
 GRand Unified Bootloader, stage1 version 0x3, stage2 address 0x2000, stage2 segment 0x200&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-partition 1: &lt;span class=&quot;nv&quot;&gt;ID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0x83, active, starthead 1, startsector 63, &lt;span class=&quot;m&quot;&gt;32067&lt;/span&gt; sectors&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-partition 2: &lt;span class=&quot;nv&quot;&gt;ID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0x83, starthead 0, startsector 32130, &lt;span class=&quot;m&quot;&gt;192780&lt;/span&gt; sectors, code offset 0x48&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+partition 1: &lt;span class=&quot;nv&quot;&gt;ID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0x83, active, starthead 1, startsector 63, 32067 sectors&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+partition 2: &lt;span class=&quot;nv&quot;&gt;ID&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0x83, starthead 0, startsector 32130, 192780 sectors, code offset 0x48&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;Yes, you don&amp;#39;t need to decrypt all by yourself like we did to extract information from the MBR, this command print out everything for you... At least, we guess right about the content of this data storage device =0)&lt;/p&gt;
 </content>
@@ -326,7 +328,7 @@ partition 2: &lt;span class=&quot;nv&quot;&gt;ID&lt;/span&gt;&lt;span class=&quo
  <entry>
    <title>Compiling Linux Kernel modules for Synology devices</title>
    <link href="http://www.bydavy.com/2012/01/compiling-linux-kernel-modules-for-synology-devices/"/>
-   <updated>2012-01-16T08:51:18-08:00</updated>
+   <updated>2012-01-16T10:51:18-06:00</updated>
    <id>http://www.bydavy.com/2012/01/compiling-linux-kernel-modules-for-synology-devices</id>
    <content type="html">&lt;p&gt;Synology NAS are very versatile. They are running a stripped version of Linux with less kernel modules, but we can overcome this by compiling and adding modules (for instance the usbserial module used by usb serial converters).&lt;/p&gt;
 
@@ -344,60 +346,60 @@ partition 2: &lt;span class=&quot;nv&quot;&gt;ID&lt;/span&gt;&lt;span class=&quo
 &lt;li&gt;Unzip the tool chains in /usr/local&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;computer&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;tar -xzf yourToolChains -C /usr/local/&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;    computer&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;tar&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-xzf&lt;/span&gt; yourToolChains &lt;span class=&quot;nt&quot;&gt;-C&lt;/span&gt; /usr/local/&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Unzip the Synology NAS GPL source inside your tool chains&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;computer&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;tar -xzf yourNASGPLSource -C /usr/local/yourToolChains/&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;    computer&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;tar&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-xzf&lt;/span&gt; yourNASGPLSource &lt;span class=&quot;nt&quot;&gt;-C&lt;/span&gt; /usr/local/yourToolChains/&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Before continuing, let&amp;#39;s find out which Linux kernel we are running on the Synology in order to compile for the right version:&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;computer&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ssh -l root ipOfYourSynology
-synology&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;uname -a
-Linux Syno youLinuxKernelVersion xxxxx yourSynologyArchi&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;computer&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ssh &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; root ipOfYourSynology
+synology&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;uname &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt;
+Linux Syno youLinuxKernelVersion xxxxx yourSynologyArchi&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Open the Synology NAS GPL source folder corresponding to your Synology Linux kernel&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;computer&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /usr/local/yourToolChains/source/linux-youLinuxKernelVersion&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;computer&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /usr/local/yourToolChains/source/linux-youLinuxKernelVersion&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Copy the config file created by Synology to configure the kernel&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;computer&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;cp synoconfigs/yourSynologyArchi .config&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;computer&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;cp synoconfigs/yourSynologyArchi .config&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Edit the Makefile to compile for the right architecture and use the right tool chains&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;computer&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vi Makefile
-edit the variable ARCH -&amp;gt; &lt;span class=&quot;nv&quot;&gt;ARCH&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; yourSynologyAchi
-edit the variable CROSS_COMPILE -&amp;gt; &lt;span class=&quot;nv&quot;&gt;CROSS_COMPILE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; /usr/local/yourToolChains/bin/yourToolChains-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;computer&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;vi Makefile
+edit the variable ARCH -&amp;gt; ARCH &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; yourSynologyAchi
+edit the variable CROSS_COMPILE -&amp;gt; CROSS_COMPILE &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; /usr/local/yourToolChains/bin/yourToolChains-&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Check the config file we just copied&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;computer&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;make oldconfig&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;computer&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;make oldconfig&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Edit the config file through the user interface to add modules&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;computer&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;make menuconfig&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;computer&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;make menuconfig&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Compile all modules&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;computer&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;make modules 
-&lt;span class=&quot;c&quot;&gt;# or only a specific module: make M=./drivers/usb/serial&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;computer&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;make modules 
+&lt;span class=&quot;c&quot;&gt;# or only a specific module: make M=./drivers/usb/serial&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;ul&gt;
 &lt;li&gt;Find your modules in the corresponding subfolder (in my case drivers/usb/serial/usbserial.ko)&lt;/li&gt;
@@ -408,7 +410,7 @@ edit the variable CROSS_COMPILE -&amp;gt; &lt;span class=&quot;nv&quot;&gt;CROSS
  <entry>
    <title>Buffer overflow tutorial</title>
    <link href="http://www.bydavy.com/2012/01/buffer-overflow-tutorial/"/>
-   <updated>2012-01-10T09:50:59-08:00</updated>
+   <updated>2012-01-10T11:50:59-06:00</updated>
    <id>http://www.bydavy.com/2012/01/buffer-overflow-tutorial</id>
    <content type="html">&lt;p&gt;I discovered recently a great video tutorial about buffer overflow. It&amp;#39;s splitted in 5 videos well illustrated and explained. After watching, you will know how to exploit buffer overflow, and giving you ideas about how to avoid them in your code.&lt;/p&gt;
 
@@ -425,7 +427,7 @@ edit the variable CROSS_COMPILE -&amp;gt; &lt;span class=&quot;nv&quot;&gt;CROSS
  <entry>
    <title>Sketch to author crowd animations</title>
    <link href="http://www.bydavy.com/2011/07/sketch-to-author-crowd-animations/"/>
-   <updated>2011-07-19T15:07:47-07:00</updated>
+   <updated>2011-07-19T17:07:47-05:00</updated>
    <id>http://www.bydavy.com/2011/07/sketch-to-author-crowd-animations</id>
    <content type="html">&lt;p&gt;My last year internship was a research project about crowd simulation. The idea was to not focus on simulation but on user control over the crowd. Some research has explored user control techniques that involve using a ‘brush tool’ (similar to a paint brush) or pre-labelling areas of the environment or using a sketch-based approach. &lt;/p&gt;
 
@@ -440,7 +442,7 @@ edit the variable CROSS_COMPILE -&amp;gt; &lt;span class=&quot;nv&quot;&gt;CROSS
  <entry>
    <title>"My todo list everywhere" an example of GWT + AppEngine</title>
    <link href="http://www.bydavy.com/2011/03/my-todo-list-everywhere-an-example-of-gwt-appengine/"/>
-   <updated>2011-03-02T16:37:51-08:00</updated>
+   <updated>2011-03-02T18:37:51-06:00</updated>
    <id>http://www.bydavy.com/2011/03/my-todo-list-everywhere-an-example-of-gwt-appengine</id>
    <content type="html">&lt;p&gt;Those days, I played with GWT and AppEngine (GWT is an easy way to write ajax application, and AppEngine is a host, datastore and set of tools for web applications). Their are great tools, and a lot of tutorials are available.&lt;/p&gt;
 
@@ -509,9 +511,9 @@ edit the variable CROSS_COMPILE -&amp;gt; &lt;span class=&quot;nv&quot;&gt;CROSS
  
  <entry>
    <title>MVC vs MVP – Part 2</title>
-   <link href="http://www.bydavy.com/2011/02/mvc-vs-mvp-part-2/"/>
-   <updated>2011-02-20T12:36:16-08:00</updated>
-   <id>http://www.bydavy.com/2011/02/mvc-vs-mvp-part-2</id>
+   <link href="http://www.bydavy.com/2011/02/mvc-vs-mvp-e2-80-93-part-2/"/>
+   <updated>2011-02-20T14:36:16-06:00</updated>
+   <id>http://www.bydavy.com/2011/02/mvc-vs-mvp-%e2%80%93-part-2</id>
    <content type="html">&lt;h1&gt;What is the major difference ?&lt;/h1&gt;
 
 &lt;p&gt;In MVC, the biggest portion of code is shared between the Controller and the View. The controller contains the logic, and the View know how to render the model and listen model changes.&lt;/p&gt;
@@ -548,7 +550,7 @@ edit the variable CROSS_COMPILE -&amp;gt; &lt;span class=&quot;nv&quot;&gt;CROSS
  <entry>
    <title>MVC vs MVP - Part 1</title>
    <link href="http://www.bydavy.com/2011/02/mvc-vs-mvp/"/>
-   <updated>2011-02-17T16:56:13-08:00</updated>
+   <updated>2011-02-17T18:56:13-06:00</updated>
    <id>http://www.bydavy.com/2011/02/mvc-vs-mvp</id>
    <content type="html">&lt;p&gt;MVC or MVP everyone  have heard those acronym at least once. But what they exactly stand for ?&lt;/p&gt;
 
@@ -565,7 +567,7 @@ edit the variable CROSS_COMPILE -&amp;gt; &lt;span class=&quot;nv&quot;&gt;CROSS
 
 &lt;p&gt;In the MVC design pattern, the view know the model and can display it.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Model&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 
         &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;populateView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Model&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
@@ -573,38 +575,38 @@ edit the variable CROSS_COMPILE -&amp;gt; &lt;span class=&quot;nv&quot;&gt;CROSS
             &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
             &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setText&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
         &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;The view listens the model an will be aware if it changes.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyView&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ModelListener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyView&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ModelListener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onModelChanged&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
         &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
             &lt;span class=&quot;c1&quot;&gt;//Update the view with the new status of the model&lt;/span&gt;
         &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h3&gt;The controller&lt;/h3&gt;
 
 &lt;p&gt;The controller knows the view and listens event from it.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyController&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ViewListener&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyController&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ViewListener&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onButtonClicked&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
         &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
             &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
             &lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;displayPopup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
         &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;The controller can modify the model without updating the view, because the view is a model listener.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyController&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ViewListener&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyController&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ViewListener&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onButtonClicked&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
         &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
             &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
             &lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
         &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h2&gt;MVP&lt;/h2&gt;
 
@@ -612,27 +614,27 @@ edit the variable CROSS_COMPILE -&amp;gt; &lt;span class=&quot;nv&quot;&gt;CROSS
 
 &lt;p&gt;In the MVP design pattern, the view doesn&amp;#39;t know the model and receives basic orders to populate the interface (setLabelText, setTodayDate, but never read value from the model)&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setNameValue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
         &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
             &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setText&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
         &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;h3&gt;The presenter&lt;/h3&gt;
 
 &lt;p&gt;The presenter knows the view, populates the view and binds itself to interface listeners&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyPresenter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyPresenter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
         &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Model&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 
         &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
         &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addButtonActionListener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ActionListener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addButtonActionListener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ActionListener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
                 &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
                &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;actionPerformed&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ActionEvent&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;event&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                   &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setText&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;blabla&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+                   &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setText&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;blabla&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
            &lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
         &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
@@ -642,18 +644,18 @@ edit the variable CROSS_COMPILE -&amp;gt; &lt;span class=&quot;nv&quot;&gt;CROSS
             &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
             &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setButtonEnabled&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
         &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;The presenter is the only entity to know the model and to listen it.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyPresenter&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ModelListener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyPresenter&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ModelListener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Model&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 
         &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onModelChanged&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
         &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
             &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;view&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
         &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
 
 &lt;p&gt;To be continued...&lt;/p&gt;
 </content>
@@ -662,7 +664,7 @@ edit the variable CROSS_COMPILE -&amp;gt; &lt;span class=&quot;nv&quot;&gt;CROSS
  <entry>
    <title>A great book about search engine interfaces</title>
    <link href="http://www.bydavy.com/2011/02/a-great-book-about-search-engine-interfaces/"/>
-   <updated>2011-02-16T16:29:13-08:00</updated>
+   <updated>2011-02-16T18:29:13-06:00</updated>
    <id>http://www.bydavy.com/2011/02/a-great-book-about-search-engine-interfaces</id>
    <content type="html">&lt;p&gt;I read a great online book about search engine interface: &amp;quot;Search engine user interfaces&amp;quot; by Marti A.&lt;/p&gt;
 
@@ -687,7 +689,7 @@ edit the variable CROSS_COMPILE -&amp;gt; &lt;span class=&quot;nv&quot;&gt;CROSS
  <entry>
    <title>Why a blog ?</title>
    <link href="http://www.bydavy.com/2011/02/why-a-blog/"/>
-   <updated>2011-02-15T15:57:45-08:00</updated>
+   <updated>2011-02-15T17:57:45-06:00</updated>
    <id>http://www.bydavy.com/2011/02/why-a-blog</id>
    <content type="html">&lt;p&gt;As every blogger, I think an explanation is required.&lt;/p&gt;
 

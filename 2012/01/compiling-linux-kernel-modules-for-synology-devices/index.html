@@ -122,7 +122,7 @@
       
     </nav>
 
-    <p>&copy; 2014. All rights reserved.</p>
+    <p>&copy; 2017. All rights reserved.</p>
   </div>
 </div>
 
@@ -148,60 +148,60 @@
 <li>Unzip the tool chains in /usr/local</li>
 </ul>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">computer<span class="nv">$ </span>tar -xzf yourToolChains -C /usr/local/</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    computer<span class="nv">$ </span><span class="nb">tar</span> <span class="nt">-xzf</span> yourToolChains <span class="nt">-C</span> /usr/local/</code></pre></figure>
 
 <ul>
 <li>Unzip the Synology NAS GPL source inside your tool chains</li>
 </ul>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">computer<span class="nv">$ </span>tar -xzf yourNASGPLSource -C /usr/local/yourToolChains/</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    computer<span class="nv">$ </span><span class="nb">tar</span> <span class="nt">-xzf</span> yourNASGPLSource <span class="nt">-C</span> /usr/local/yourToolChains/</code></pre></figure>
 
 <ul>
 <li>Before continuing, let&#39;s find out which Linux kernel we are running on the Synology in order to compile for the right version:</li>
 </ul>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">computer<span class="nv">$ </span>ssh -l root ipOfYourSynology
-synology<span class="nv">$ </span>uname -a
-Linux Syno youLinuxKernelVersion xxxxx yourSynologyArchi</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">computer<span class="nv">$ </span>ssh <span class="nt">-l</span> root ipOfYourSynology
+synology<span class="nv">$ </span>uname <span class="nt">-a</span>
+Linux Syno youLinuxKernelVersion xxxxx yourSynologyArchi</code></pre></figure>
 
 <ul>
 <li>Open the Synology NAS GPL source folder corresponding to your Synology Linux kernel</li>
 </ul>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">computer<span class="nv">$ </span><span class="nb">cd</span> /usr/local/yourToolChains/source/linux-youLinuxKernelVersion</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">computer<span class="nv">$ </span><span class="nb">cd</span> /usr/local/yourToolChains/source/linux-youLinuxKernelVersion</code></pre></figure>
 
 <ul>
 <li>Copy the config file created by Synology to configure the kernel</li>
 </ul>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">computer<span class="nv">$ </span>cp synoconfigs/yourSynologyArchi .config</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">computer<span class="nv">$ </span>cp synoconfigs/yourSynologyArchi .config</code></pre></figure>
 
 <ul>
 <li>Edit the Makefile to compile for the right architecture and use the right tool chains</li>
 </ul>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">computer<span class="nv">$ </span>vi Makefile
-edit the variable ARCH -&gt; <span class="nv">ARCH</span> <span class="o">=</span> yourSynologyAchi
-edit the variable CROSS_COMPILE -&gt; <span class="nv">CROSS_COMPILE</span> <span class="o">=</span> /usr/local/yourToolChains/bin/yourToolChains-</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">computer<span class="nv">$ </span>vi Makefile
+edit the variable ARCH -&gt; ARCH <span class="o">=</span> yourSynologyAchi
+edit the variable CROSS_COMPILE -&gt; CROSS_COMPILE <span class="o">=</span> /usr/local/yourToolChains/bin/yourToolChains-</code></pre></figure>
 
 <ul>
 <li>Check the config file we just copied</li>
 </ul>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">computer<span class="nv">$ </span>make oldconfig</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">computer<span class="nv">$ </span>make oldconfig</code></pre></figure>
 
 <ul>
 <li>Edit the config file through the user interface to add modules</li>
 </ul>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">computer<span class="nv">$ </span>make menuconfig</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">computer<span class="nv">$ </span>make menuconfig</code></pre></figure>
 
 <ul>
 <li>Compile all modules</li>
 </ul>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash">computer<span class="nv">$ </span>make modules 
-<span class="c"># or only a specific module: make M=./drivers/usb/serial</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">computer<span class="nv">$ </span>make modules 
+<span class="c"># or only a specific module: make M=./drivers/usb/serial</span></code></pre></figure>
 
 <ul>
 <li>Find your modules in the corresponding subfolder (in my case drivers/usb/serial/usbserial.ko)</li>
@@ -233,7 +233,7 @@ edit the variable CROSS_COMPILE -&gt; <span class="nv">CROSS_COMPILE</span> <spa
         <h3>
           <a href="/2014/03/numbers-morphing-implemented-with-android-ui-toolkit/">
             Number's morphing implemented with Android UI toolkit
-            <small>24 Mar 2014</small>
+            <small>25 Mar 2014</small>
           </a>
         </h3>
       </li>
@@ -251,7 +251,7 @@ edit the variable CROSS_COMPILE -&gt; <span class="nv">CROSS_COMPILE</span> <spa
         <h3>
           <a href="/2013/10/listeners-common-mistakes/">
             Listeners: Common mistakes
-            <small>07 Oct 2013</small>
+            <small>08 Oct 2013</small>
           </a>
         </h3>
       </li>

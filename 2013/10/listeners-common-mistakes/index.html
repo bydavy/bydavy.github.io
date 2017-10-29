@@ -122,7 +122,7 @@
       
     </nav>
 
-    <p>&copy; 2014. All rights reserved.</p>
+    <p>&copy; 2017. All rights reserved.</p>
   </div>
 </div>
 
@@ -131,14 +131,14 @@
       <div class="post">
   <h1 class="post-title">Listeners: Common mistakes</h1>
   Davy
-  <span class="post-date">07 Oct 2013</span>
+  <span class="post-date">08 Oct 2013</span>
   <p>Listeners are very common in Java and surprisingly they are rarely implemented correctly. The issue comes most of the time from the event firing, also known as notifying listeners. Let&#39;s go over a few implementation I&#39;ve encounter and let&#39;s explain the shortcomings.</p>
 
 <h1>Context</h1>
 
 <p>Let&#39;s assume that we have a class Listenable which is our object observed and an interface Listener which are our observers.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Listenable</span> <span class="o">{</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Listenable</span> <span class="o">{</span>
     <span class="n">Collection</span> <span class="n">mListeners</span><span class="o">;</span>
     
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">registerListener</span><span class="o">(</span><span class="n">Listener</span> <span class="n">l</span><span class="o">)</span> <span class="o">{</span>
@@ -156,19 +156,19 @@
 
 <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Listener</span><span class="o">{</span>
     <span class="kt">void</span> <span class="nf">onChanged</span><span class="o">();</span>
-<span class="o">}</span></code></pre></div>
+<span class="o">}</span></code></pre></figure>
 
 <h1>Bad implementation #1: iterating over listeners</h1>
 
 <p>This is the naive implementation. As mlisteners is a collection, an approach is to just go iterate on it with an advanced for loop and invoke the &quot;onChanged&quot; method to notify of a change.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="k">for</span><span class="o">(</span><span class="n">Listener</span> <span class="nl">l:</span> <span class="n">mListeners</span><span class="o">){</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="k">for</span><span class="o">(</span><span class="n">Listener</span> <span class="nl">l:</span> <span class="n">mListeners</span><span class="o">){</span>
     <span class="n">l</span><span class="o">.</span><span class="na">onChanged</span><span class="o">();</span>
-<span class="o">}</span></code></pre></div>
+<span class="o">}</span></code></pre></figure>
 
 <p>It looks pretty simple and legit. Well not really... &quot;onChanged&quot; is implemented by another object and we don&#39;t know what could be its implementation.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// Example of implementation where it gets bad</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// Example of implementation where it gets bad</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyListener</span> <span class="kd">implements</span> <span class="n">Listener</span> <span class="o">{</span>
 
     <span class="n">Listenable</span> <span class="n">mListenable</span><span class="o">;</span>
@@ -177,7 +177,7 @@
         <span class="c1">// Do the logic</span>
         <span class="n">mListenable</span><span class="o">.</span><span class="na">removeListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
     <span class="o">}</span>
-<span class="o">}</span></code></pre></div>
+<span class="o">}</span></code></pre></figure>
 
 <p>Advanced for loop in Java are based of iterators and unfortunately iterators have a few limitations. They don&#39;t support Collection edition after the iterator creation and during its usage. To be more precise, the Collection can be edited through the iterator&#39;s remove method but that&#39;s pretty much it. In our example, while scanning the Collection in the Observer, a Listener could invoke the &quot;removeListener()&quot; method. The consequence is a ConcurrentModificationException thrown in the Observer code -when it will try to iterating over the next Listener-.</p>
 
@@ -185,11 +185,11 @@
 
 <p>In this code, the Collection is iterated in a reverse way. I guess the intent is to overcome the potential ConcurrentModificationException by getting rid of Iterators and iterating manually over the Collection and alowing Listener removal by doing a reverse scan. Unfortunately this piece of code fails at both.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">final</span> <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="n">mListeners</span><span class="o">.</span><span class="na">size</span><span class="o">();</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">final</span> <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="n">mListeners</span><span class="o">.</span><span class="na">size</span><span class="o">();</span>
 <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="o">;</span> <span class="n">size</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">--)</span> <span class="o">{</span>
     <span class="n">Listener</span> <span class="n">l</span> <span class="o">=</span> <span class="n">mListeners</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
     <span class="n">l</span><span class="o">.</span><span class="na">onChanged</span><span class="o">();</span>
-<span class="o">}</span></code></pre></div>
+<span class="o">}</span></code></pre></figure>
 
 <p>As we don&#39;t know what could be implemented under the onChanged method of a Listener, we have to be ready to all eventualities. In case a Listener unregister more than one Listener our code could change the size of the list while we are iterating over it and potential throw w NullPointerException. Or it can add Listeners and depending if they are added at the beginning or end of the Collection they could receive or not the change currently notified.</p>
 
@@ -197,22 +197,22 @@
 
 <p>Listeners and synchronization together are most of the time a latent bomb.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">synchronized</span><span class="o">(</span><span class="n">mListeners</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">for</span><span class="o">(</span><span class="n">Listener</span> <span class="nl">l:</span> <span class="n">mListeners</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Don&#39;t focus on the way we iterate here</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">synchronized</span><span class="o">(</span><span class="n">mListeners</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">for</span><span class="o">(</span><span class="n">Listener</span> <span class="nl">l:</span> <span class="n">mListeners</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Don't focus on the way we iterate here</span>
         <span class="n">l</span><span class="o">.</span><span class="na">onChanged</span><span class="o">();</span>
     <span class="o">}</span>
-<span class="o">}</span></code></pre></div>
+<span class="o">}</span></code></pre></figure>
 
 <p>Synchronizing a monitor during the invokation of a listener is a very bold idea. Again, we have no idea of what the Listener code could be and the other side, the Listener doesn&#39;t know if and why we have decided to synchronize on a monitor during it&#39;s onChanged invokation. In those circumstances, we can easily imagine potential deadlocks.</p>
 
 <h1>A better way to do it</h1>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// Take a snapshot of listeners registered when the change occured</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="c1">// Take a snapshot of listeners registered when the change occured</span>
 <span class="n">List</span><span class="o">&lt;</span><span class="n">Listener</span><span class="o">&gt;</span> <span class="n">listenersToinvoke</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Listener</span><span class="o">&gt;(</span><span class="n">mListeners</span><span class="o">);</span>
 <span class="c1">// Iterator over the snapshot without holding any monitors</span>
 <span class="k">for</span><span class="o">(</span><span class="n">Listener</span> <span class="nl">l:</span> <span class="n">listenersToinvoke</span><span class="o">){</span>
     <span class="n">l</span><span class="o">.</span><span class="na">onChanged</span><span class="o">();</span>
-<span class="o">}</span></code></pre></div>
+<span class="o">}</span></code></pre></figure>
 
 <p>Now, it probably makes sense why this is a better approach. By copying the Collection, we ensure two things:</p>
 
@@ -249,7 +249,7 @@
         <h3>
           <a href="/2014/03/numbers-morphing-implemented-with-android-ui-toolkit/">
             Number's morphing implemented with Android UI toolkit
-            <small>24 Mar 2014</small>
+            <small>25 Mar 2014</small>
           </a>
         </h3>
       </li>
@@ -267,7 +267,7 @@
         <h3>
           <a href="/2013/06/searching-in-aosp-source-code/">
             Searching in AOSP source code
-            <small>17 Jun 2013</small>
+            <small>18 Jun 2013</small>
           </a>
         </h3>
       </li>

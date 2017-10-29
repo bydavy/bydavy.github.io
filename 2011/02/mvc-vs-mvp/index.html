@@ -122,7 +122,7 @@
       
     </nav>
 
-    <p>&copy; 2014. All rights reserved.</p>
+    <p>&copy; 2017. All rights reserved.</p>
   </div>
 </div>
 
@@ -147,7 +147,7 @@
 
 <p>In the MVC design pattern, the view know the model and can display it.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyView</span> <span class="o">{</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyView</span> <span class="o">{</span>
         <span class="kd">private</span> <span class="n">Model</span> <span class="n">model</span><span class="o">;</span>
 
         <span class="kd">private</span> <span class="kt">void</span> <span class="nf">populateView</span><span class="o">(</span><span class="n">Model</span> <span class="n">model</span><span class="o">)</span>
@@ -155,38 +155,38 @@
             <span class="kd">final</span> <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
             <span class="k">this</span><span class="o">.</span><span class="na">label</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
         <span class="o">}</span>
-    <span class="o">}</span></code></pre></div>
+    <span class="o">}</span></code></pre></figure>
 
 <p>The view listens the model an will be aware if it changes.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyView</span> <span class="kd">implements</span> <span class="n">ModelListener</span><span class="o">{</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyView</span> <span class="kd">implements</span> <span class="n">ModelListener</span><span class="o">{</span>
         <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onModelChanged</span><span class="o">()</span>
         <span class="o">{</span>
             <span class="c1">//Update the view with the new status of the model</span>
         <span class="o">}</span>
-    <span class="o">}</span></code></pre></div>
+    <span class="o">}</span></code></pre></figure>
 
 <h3>The controller</h3>
 
 <p>The controller knows the view and listens event from it.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyController</span> <span class="kd">implements</span> <span class="n">ViewListener</span> <span class="o">{</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyController</span> <span class="kd">implements</span> <span class="n">ViewListener</span> <span class="o">{</span>
         <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onButtonClicked</span><span class="o">()</span>
         <span class="o">{</span>
             <span class="kd">final</span> <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">view</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
             <span class="n">view</span><span class="o">.</span><span class="na">displayPopup</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
         <span class="o">}</span>
-    <span class="o">}</span></code></pre></div>
+    <span class="o">}</span></code></pre></figure>
 
 <p>The controller can modify the model without updating the view, because the view is a model listener.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyController</span> <span class="kd">implements</span> <span class="n">ViewListener</span> <span class="o">{</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyController</span> <span class="kd">implements</span> <span class="n">ViewListener</span> <span class="o">{</span>
         <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onButtonClicked</span><span class="o">()</span>
         <span class="o">{</span>
             <span class="kd">final</span> <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">view</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
             <span class="n">model</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
         <span class="o">}</span>
-    <span class="o">}</span></code></pre></div>
+    <span class="o">}</span></code></pre></figure>
 
 <h2>MVP</h2>
 
@@ -194,27 +194,27 @@
 
 <p>In the MVP design pattern, the view doesn&#39;t know the model and receives basic orders to populate the interface (setLabelText, setTodayDate, but never read value from the model)</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyView</span> <span class="o">{</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyView</span> <span class="o">{</span>
         <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNameValue</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span>
         <span class="o">{</span>
             <span class="k">this</span><span class="o">.</span><span class="na">label</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">name</span><span class="o">);</span>
         <span class="o">}</span>
-    <span class="o">}</span></code></pre></div>
+    <span class="o">}</span></code></pre></figure>
 
 <h3>The presenter</h3>
 
 <p>The presenter knows the view, populates the view and binds itself to interface listeners</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyPresenter</span> <span class="o">{</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyPresenter</span> <span class="o">{</span>
         <span class="kd">private</span> <span class="n">View</span> <span class="n">view</span><span class="o">;</span>
         <span class="kd">private</span> <span class="n">Model</span> <span class="n">model</span><span class="o">;</span>
 
         <span class="kd">public</span> <span class="kt">void</span> <span class="nf">bind</span><span class="o">()</span>
         <span class="o">{</span>
-            <span class="k">this</span><span class="o">.</span><span class="na">view</span><span class="o">.</span><span class="na">addButtonActionListener</span><span class="o">(</span><span class="k">new</span> <span class="nf">ActionListener</span><span class="o">()</span> <span class="o">{</span>
+            <span class="k">this</span><span class="o">.</span><span class="na">view</span><span class="o">.</span><span class="na">addButtonActionListener</span><span class="o">(</span><span class="k">new</span> <span class="n">ActionListener</span><span class="o">()</span> <span class="o">{</span>
                 <span class="nd">@Override</span>
                <span class="kd">public</span> <span class="kt">void</span> <span class="nf">actionPerformed</span><span class="o">(</span><span class="n">ActionEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
-                   <span class="k">this</span><span class="o">.</span><span class="na">view</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">&quot;blabla&quot;</span><span class="o">);</span>
+                   <span class="k">this</span><span class="o">.</span><span class="na">view</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="s">"blabla"</span><span class="o">);</span>
                <span class="o">}</span>
            <span class="o">});</span>
         <span class="o">}</span>
@@ -224,18 +224,18 @@
             <span class="k">this</span><span class="o">.</span><span class="na">view</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="n">model</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
             <span class="k">this</span><span class="o">.</span><span class="na">view</span><span class="o">.</span><span class="na">setButtonEnabled</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
         <span class="o">}</span>
-    <span class="o">}</span></code></pre></div>
+    <span class="o">}</span></code></pre></figure>
 
 <p>The presenter is the only entity to know the model and to listen it.</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyPresenter</span> <span class="kd">implements</span> <span class="n">ModelListener</span><span class="o">{</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyPresenter</span> <span class="kd">implements</span> <span class="n">ModelListener</span><span class="o">{</span>
         <span class="kd">private</span> <span class="n">Model</span> <span class="n">model</span><span class="o">;</span>
 
         <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onModelChanged</span><span class="o">()</span>
         <span class="o">{</span>
             <span class="k">this</span><span class="o">.</span><span class="na">view</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="n">model</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
         <span class="o">}</span>
-    <span class="o">}</span></code></pre></div>
+    <span class="o">}</span></code></pre></figure>
 
 <p>To be continued...</p>
 
@@ -265,7 +265,7 @@
         <h3>
           <a href="/2014/03/numbers-morphing-implemented-with-android-ui-toolkit/">
             Number's morphing implemented with Android UI toolkit
-            <small>24 Mar 2014</small>
+            <small>25 Mar 2014</small>
           </a>
         </h3>
       </li>
@@ -283,7 +283,7 @@
         <h3>
           <a href="/2013/10/listeners-common-mistakes/">
             Listeners: Common mistakes
-            <small>07 Oct 2013</small>
+            <small>08 Oct 2013</small>
           </a>
         </h3>
       </li>

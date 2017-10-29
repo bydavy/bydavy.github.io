@@ -122,7 +122,7 @@
       
     </nav>
 
-    <p>&copy; 2014. All rights reserved.</p>
+    <p>&copy; 2017. All rights reserved.</p>
   </div>
 </div>
 
@@ -152,7 +152,7 @@
 
 <p>We can simply use the command dd to copy the raw first 512 bytes of a media</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$dd</span> <span class="k">if</span><span class="o">=</span>/dev/YOUR_DATA_STORAGE_DEVICE <span class="nv">of</span><span class="o">=</span>DESTINATION_FILE <span class="nv">bs</span><span class="o">=</span><span class="m">512</span> <span class="nv">count</span><span class="o">=</span>1</code></pre></div>
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$dd</span> <span class="k">if</span><span class="o">=</span>/dev/YOUR_DATA_STORAGE_DEVICE <span class="nv">of</span><span class="o">=</span>DESTINATION_FILE <span class="nv">bs</span><span class="o">=</span>512 <span class="nv">count</span><span class="o">=</span>1</code></pre></figure>
 
 <h1><strong>An example of Master Boot Record</strong></h1>
 
@@ -210,11 +210,11 @@
 
 <p>I don&#39;t what to hurt you but there is a beautiful command &quot;file&quot;, and guess what...</p>
 
-<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$file</span> YOUR_EXTRACTED_MBRE
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$file</span> YOUR_EXTRACTED_MBRE
 x86 boot sector<span class="p">;</span>
 GRand Unified Bootloader, stage1 version 0x3, stage2 address 0x2000, stage2 segment 0x200<span class="p">;</span>
-partition 1: <span class="nv">ID</span><span class="o">=</span>0x83, active, starthead 1, startsector 63, <span class="m">32067</span> sectors<span class="p">;</span>
-partition 2: <span class="nv">ID</span><span class="o">=</span>0x83, starthead 0, startsector 32130, <span class="m">192780</span> sectors, code offset 0x48</code></pre></div>
+partition 1: <span class="nv">ID</span><span class="o">=</span>0x83, active, starthead 1, startsector 63, 32067 sectors<span class="p">;</span>
+partition 2: <span class="nv">ID</span><span class="o">=</span>0x83, starthead 0, startsector 32130, 192780 sectors, code offset 0x48</code></pre></figure>
 
 <p>Yes, you don&#39;t need to decrypt all by yourself like we did to extract information from the MBR, this command print out everything for you... At least, we guess right about the content of this data storage device =0)</p>
 
@@ -244,7 +244,7 @@ partition 2: <span class="nv">ID</span><span class="o">=</span>0x83, starthead 0
         <h3>
           <a href="/2014/03/numbers-morphing-implemented-with-android-ui-toolkit/">
             Number's morphing implemented with Android UI toolkit
-            <small>24 Mar 2014</small>
+            <small>25 Mar 2014</small>
           </a>
         </h3>
       </li>
@@ -262,7 +262,7 @@ partition 2: <span class="nv">ID</span><span class="o">=</span>0x83, starthead 0
         <h3>
           <a href="/2013/10/listeners-common-mistakes/">
             Listeners: Common mistakes
-            <small>07 Oct 2013</small>
+            <small>08 Oct 2013</small>
           </a>
         </h3>
       </li>
